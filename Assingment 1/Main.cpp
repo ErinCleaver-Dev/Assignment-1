@@ -26,6 +26,9 @@ using namespace std;
 
 //function definition section
 
+void DisplayMenu();
+double ValidateDouble();
+
 int main() {
 
 	CalculateShapes caculateShapes;
@@ -33,12 +36,10 @@ int main() {
 	double triangleLegX, triangleLegY, hypotenuse, trapBase1, trapBase2, trapHeight, trapArea, rectWidth, rectHeight, rectLength, rectVolume;
 	char stopApp, ans;
 	
+
 	//Allow the user to acquire multiple outputs 
 	do {
-		cout << "Requesting figure being calculated" << endl;
-		cout << "Triangle - 0" << endl;
-		cout << "Trapezoid - 1" << endl;
-		cout << "Rectangle - 2" << endl;
+		void DisplayMenu();
 		cin >> ans;
 
 		switch (ans) // Execute the correct shape the user is calculating
@@ -46,21 +47,10 @@ int main() {
 		case '0':
 			
 				cout << "Enter X" << endl;		//Prompt user for leg X
-				cin >> triangleLegX;			//Get leg X
-				while (cin.fail()) {			//If input fails
-					cin.clear();				//Clear error flags
-					cin.ignore(100, '\n');		//Skip to newline
-					cout << "Please enter a number!\n";
-					cin >> triangleLegX;
-				}
+				triangleLegY = ValidateDouble();
+
 				cout << "Enter Y" << endl;		//Prompt user for leg Y
-				cin >> triangleLegY;			//Get leg Y
-				while (cin.fail()) {
-					cin.clear();
-					cin.ignore(100, '\n');
-					cout << "Please enter a number!\n";
-					cin >> triangleLegY;
-				}
+				triangleLegY = ValidateDouble();
 				
 				hypotenuse = caculateShapes.triCal(triangleLegX, triangleLegY); //Call the function to calculate triangle
 				cout << "Hypotenuse is: " << hypotenuse << endl;
@@ -69,33 +59,13 @@ int main() {
 
 		case '1':
 			cout << "Enter the base of Trapezoid" << endl;		//Prompt user for b1
-			cin >> trapBase1;									//Get b1
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> trapBase1;
-			}
+			trapBase1 = ValidateDouble();
 
 			cout << "Enter the second base" << endl;			//Prompt user for b2
-			cin >> trapBase2;									//Get b2
-
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> trapBase2;
-			}
+			trapBase2 = ValidateDouble();								//Get b2
 
 			cout << "Enter the height" << endl;					//Prompt user for height
-			cin >> trapHeight;									//Get height
-
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> trapHeight;
-			}
+			trapHeight = ValidateDouble();
 
 			trapArea = caculateShapes.trapCal(trapBase1, trapBase2, trapHeight); //Call the function to calculate trapezoid
 			cout << "The area is: " << trapArea << endl;		
@@ -103,34 +73,13 @@ int main() {
 			
 		case '2':	
 			cout << "Enter the width" << endl;		//Prompt user for width
-			cin >> rectWidth;						//Get width
-
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> rectWidth;
-			}
+			rectWidth = ValidateDouble();
 
 			cout << "Enter the height" << endl;		//Prompt user for height
-			cin >> rectHeight;						//Get height
-
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> rectHeight;
-			}
+			rectHeight = ValidateDouble();
 
 			cout << "Enter the length" << endl;		//Prompt user for length
-			cin >> rectLength;						//Get length
-
-			while (cin.fail()) {
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "Please enter a number!\n";
-				cin >> rectLength;
-			}
+			rectHeight = ValidateDouble();
 
 			rectVolume = caculateShapes.rectCal(rectWidth, rectHeight, rectLength); //Call the function to calculate rectangle
 
@@ -152,3 +101,21 @@ int main() {
 }
 
 
+void DisplayMenu(){
+	cout << "Requesting figure being calculated" << endl;
+	cout << "Triangle - 0" << endl;
+	cout << "Trapezoid - 1" << endl;
+	cout << "Rectangle - 2" << endl;
+}
+
+double ValidateDouble() {
+	cin >> value;
+	while (cin.fail()) {			//If input fails
+		cin.clear();				//Clear error flags
+		cin.ignore(100, '\n');		//Skip to newline
+		cout << "Please enter a number!\n";
+		cin >> value;
+	}
+
+	return value;
+}
