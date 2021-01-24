@@ -39,7 +39,7 @@ int main() {
 
 	//Allow the user to acquire multiple outputs 
 	do {
-		void DisplayMenu();
+		DisplayMenu();
 		cin >> ans;
 
 		switch (ans) // Execute the correct shape the user is calculating
@@ -50,7 +50,7 @@ int main() {
 				triangleLegY = ValidateDouble();
 
 				cout << "Enter Y" << endl;		//Prompt user for leg Y
-				triangleLegY = ValidateDouble();
+				triangleLegX = ValidateDouble();
 				
 				hypotenuse = caculateShapes.triCal(triangleLegX, triangleLegY); //Call the function to calculate triangle
 				cout << "Hypotenuse is: " << hypotenuse << endl;
@@ -72,14 +72,14 @@ int main() {
 			break;
 			
 		case '2':	
-			cout << "Enter the width" << endl;		//Prompt user for width
+			cout << "Enter the width" << endl;		//Prompt user for width and 
 			rectWidth = ValidateDouble();
 
 			cout << "Enter the height" << endl;		//Prompt user for height
 			rectHeight = ValidateDouble();
 
 			cout << "Enter the length" << endl;		//Prompt user for length
-			rectHeight = ValidateDouble();
+			rectLength = ValidateDouble();
 
 			rectVolume = caculateShapes.rectCal(rectWidth, rectHeight, rectLength); //Call the function to calculate rectangle
 
@@ -101,6 +101,7 @@ int main() {
 }
 
 
+// Function to display the menu
 void DisplayMenu(){
 	cout << "Requesting figure being calculated" << endl;
 	cout << "Triangle - 0" << endl;
@@ -108,7 +109,10 @@ void DisplayMenu(){
 	cout << "Rectangle - 2" << endl;
 }
 
+
+// Function to validate doubles as numbers 
 double ValidateDouble() {
+	double value = 0;
 	cin >> value;
 	while (cin.fail()) {			//If input fails
 		cin.clear();				//Clear error flags
