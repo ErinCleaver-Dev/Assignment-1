@@ -114,11 +114,16 @@ void DisplayMenu(){
 double ValidateDouble() {
 	double value = 0;
 	cin >> value;
+
+
 	while (cin.fail()) {			//If input fails
 		cin.clear();				//Clear error flags
 		cin.ignore(100, '\n');		//Skip to newline
 		cout << "Please enter a number!\n";
 		cin >> value;
+		if (value == 0) {
+			cin >> value;
+		}
 	}
 
 	return value;
